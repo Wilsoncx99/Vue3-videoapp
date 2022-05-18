@@ -1,29 +1,13 @@
 <template>
   <div class="wrapper">
-    <div class="topbar">
-      <div class="icon">
-        <img src="../assets/myicon.svg" />
-      </div>
-      <div class="searchbar">
-        <van-search v-model="value" placeholder="请输入搜索关键词" />
-      </div>
-      <div class="messagebar">
-        <img src="../assets/mail.svg" />
-      </div>
-    </div>
-    <div class="tabbar">
-      <van-tabs v-model:active="tab">
-        <van-tab title="直播"></van-tab>
-        <van-tab title="视频"></van-tab>
-      </van-tabs>
-    </div>
+    <div class="topbar"></div>
   </div>
 
   <van-tabbar v-model="active">
-    <van-tabbar-item icon="home-o">首页</van-tabbar-item>
+    <van-tabbar-item to="/Home" icon="home-o">首页</van-tabbar-item>
     <van-tabbar-item icon="search">动态</van-tabbar-item>
     <van-tabbar-item icon="friends-o">会员购</van-tabbar-item>
-    <van-tabbar-item to="/Mine" icon="setting-o">我的</van-tabbar-item>
+    <van-tabbar-item icon="setting-o">我的</van-tabbar-item>
   </van-tabbar>
 </template>
 
@@ -31,7 +15,7 @@
 import { ref } from "vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Home",
+  name: "Mine",
   setup() {
     const value = ref("");
     const active = ref(0);
