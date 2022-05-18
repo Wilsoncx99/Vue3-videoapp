@@ -1,15 +1,20 @@
 <template>
   <div class="wrapper">
-    <div class="addressbar">
-      <div>您所在的位置</div>
-    </div>
-    <div class="searchbar">
-      <van-search v-model="value" placeholder="请输入搜索关键词" />
+    <div class="topbar">
+      <div class="icon">
+        <img src="../assets/myicon.svg" />
+      </div>
+      <div class="searchbar">
+        <van-search v-model="value" placeholder="请输入搜索关键词" />
+      </div>
+      <div class="messagebar">
+        <img src="../assets/mail.svg" />
+      </div>
     </div>
     <div class="tabbar">
       <van-tabs v-model:active="tab">
-        <van-tab title="直播">1</van-tab>
-        <van-tab title="视频">2</van-tab>
+        <van-tab title="直播"></van-tab>
+        <van-tab title="视频"></van-tab>
       </van-tabs>
     </div>
   </div>
@@ -48,11 +53,29 @@ export default {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  .addressbar {
+  .topbar {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
     height: 5%;
+    img {
+      height: 2rem;
+      width: 2rem;
+    }
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+    }
+    .messagebar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+    }
+    .searchbar {
+      flex-grow: 1;
+    }
   }
 }
 </style>
