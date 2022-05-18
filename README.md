@@ -1,4 +1,5 @@
-# app
+# Ecommerce-app 
+Use Vue 3.0 flramework, with Vant3 UI framework.
 
 ## Project setup
 ```
