@@ -10,20 +10,32 @@
             v-model="username"
             name="用户名"
             placeholder="请输入用户名"
+            clearable
           />
           <van-field
             v-model="password"
             type="password"
             name="密码"
             placeholder="请输入密码"
+            clearable
           />
         </van-cell-group>
         <div style="margin: 16px">
-          <van-button round block type="primary" native-type="submit">
+          <van-button
+            @click="gohome()"
+            round
+            block
+            type="primary"
+            native-type="submit"
+          >
             提交
           </van-button>
         </div>
       </van-form>
+      <div class="regbar">
+        <div class="box">立即注册</div>
+        <div>忘记密码</div>
+      </div>
     </div>
     <div class="submitbox"></div>
   </div>
@@ -33,11 +45,26 @@
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Login",
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    gohome() {
+      this.$router.push({
+        name: "Home",
+      });
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .wrapper {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   background-color: #f7f7f7;
@@ -45,17 +72,30 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40%;
+    flex-grow: 1;
     .iconsize {
       height: 5rem;
       width: 5rem;
     }
   }
   .formbox {
-    height: 30%;
+    flex-grow: 1;
+    .regbar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      height: 3rem;
+      color: grey;
+      .box {
+        border-right: solid 0.1rem grey;
+        padding: 0 1rem 0 0;
+        margin-right: 1rem;
+      }
+    }
   }
   .submitbox {
-    height: 30%;
+    flex-grow: 1;
   }
 }
 </style>
