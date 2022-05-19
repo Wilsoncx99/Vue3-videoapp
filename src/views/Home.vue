@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="topbar">
       <div class="icon">
-        <img src="../assets/myicon.svg" />
+        <img @click="gotomine()" src="../assets/myicon.svg" />
       </div>
       <div class="searchbar">
         <van-search v-model="value" placeholder="请输入搜索关键词" />
@@ -13,8 +13,24 @@
     </div>
     <div class="tabbar">
       <van-tabs v-model:active="tab">
-        <van-tab title="直播"></van-tab>
-        <van-tab title="视频"></van-tab>
+        <van-tab title="直播">
+          <van-pull-refresh
+            style="min-height: 100vh"
+            v-model="loading"
+            @refresh="onRefresh"
+          >
+            <p style="min-height: 100vh">直播内容</p>
+          </van-pull-refresh>
+        </van-tab>
+        <van-tab title="视频">
+          <van-pull-refresh
+            style="min-height: 100vh"
+            v-model="loading"
+            @refresh="onRefresh"
+          >
+            <p style="min-height: 100vh">视频内容</p>
+          </van-pull-refresh>
+        </van-tab>
       </van-tabs>
     </div>
   </div>
@@ -29,6 +45,8 @@
 
 <script>
 import { ref } from "vue";
+import { Toast } from "vant";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Home",
@@ -36,13 +54,29 @@ export default {
     const value = ref("");
     const active = ref(0);
     const tab = ref(0);
-    return { value, active, tab };
+    const count = ref(0);
+    const loading = ref(false);
+    const onRefresh = () => {
+      setTimeout(() => {
+        Toast("刷新成功");
+        loading.value = false;
+        count.value++;
+      }, 1000);
+    };
+    return { value, active, tab, count, loading, onRefresh };
   },
   data() {
     return {
       username: "",
       password: "",
     };
+  },
+  methods: {
+    gotomine() {
+      this.$router.push({
+        name: "Mine",
+      });
+    },
   },
 };
 </script>
@@ -75,6 +109,13 @@ export default {
     }
     .searchbar {
       flex-grow: 1;
+    }
+  }
+  .tabbar {
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
