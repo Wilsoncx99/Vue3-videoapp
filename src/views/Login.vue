@@ -22,13 +22,13 @@
         </van-cell-group>
         <div style="margin: 16px">
           <van-button
-            @click="gohome()"
+            @click="handlelogin()"
             round
             block
             type="primary"
             native-type="submit"
           >
-            提交
+            登陆
           </van-button>
         </div>
       </van-form>
@@ -42,21 +42,20 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
+import { ref } from "vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Login",
-  data() {
-    return {
-      username: "",
-      password: "",
+  setup() {
+    const username = ref("");
+    const password = ref("");
+    const router = useRouter();
+    const handlelogin = () => {
+      localStorage.isLogin = true;
+      router.push({ name: "Home" });
     };
-  },
-  methods: {
-    gohome() {
-      this.$router.push({
-        name: "Home",
-      });
-    },
+    return { username, password, handlelogin };
   },
 };
 </script>
