@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="iconbox">
-      <img class="iconsize" src="../assets/logo.png" />
+      <img class="iconsize" src="@/assets/logo.png" />
     </div>
     <div class="formbox">
       <van-form @submit="onSubmit">

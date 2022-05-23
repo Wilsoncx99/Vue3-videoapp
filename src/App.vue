@@ -20,6 +20,15 @@ body,
   -ms-user-select: none; /*IE10*/
   user-select: none;
   color: #2c3e50;
+  @media only screen and (max-width: 500px) {
+    --van-nav-bar-title-font-size: 18px;
+    --van-nav-bar-arrow-size: 25px;
+  }
+
+  --van-nav-bar-title-font-size: 22px;
+  --van-nav-bar-text-color: #2c3e50;
+  --van-nav-bar-arrow-size: 40px;
+  --van-nav-bar-icon-color: #2c3e50;
 }
 
 * {

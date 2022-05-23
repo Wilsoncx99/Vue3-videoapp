@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="nav" style="height: 5%"></div>
     <div class="topbar">
-      <img class="iconsize" src="../assets/logo.png" />
+      <img class="iconsize" src="@/assets/logo.png" />
       <div class="userinfo">
         <div class="username">{{ username }}</div>
         <div class="usergold">B币:{{ bcoin }} 硬币{{ coin }}</div>
@@ -23,20 +23,11 @@
       </div>
     </div>
     <div class="settingbar">
-      <div class="settingbtn" @click="changepassword()">
+      <div class="settingbtn" @click="gotosetting()">
         <div class="a">
           <div class="box">
             <img src="@/assets/6@3x.png" />
-            <p>修改密码</p>
-          </div>
-        </div>
-        <div class="back"><img src="@/assets/4@2x.png" /></div>
-      </div>
-      <div class="settingbtn1" @click="changeinfo()">
-        <div class="a">
-          <div class="box">
-            <img src="@/assets/8@2x.png" />
-            <p>信息修改</p>
+            <p>设置</p>
           </div>
         </div>
         <div class="back"><img src="@/assets/4@2x.png" /></div>
@@ -54,6 +45,7 @@
 
 <script>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Mine",
@@ -61,7 +53,11 @@ export default {
     const value = ref("");
     const active = ref(3);
     const tab = ref(0);
-    return { value, active, tab };
+    const router = useRouter();
+    const gotosetting = () => {
+      router.push({ name: "Setting" });
+    };
+    return { value, active, tab, gotosetting };
   },
 
   data() {
@@ -168,57 +164,6 @@ export default {
       width: 100%;
       background: #f7f7f7;
     }
-    .settingbtn1 {
-      display: flex;
-      align-items: center;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      height: 8%;
-      margin: 0 5% 0 5%;
-      .a {
-        width: 95%;
-        font-size: 30px;
-        .box {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-        }
-        img {
-          @media only screen and (max-width: 500px) {
-            height: 30px;
-            width: 30px;
-          }
-          height: 45px;
-          width: 45px;
-        }
-        p {
-          @media only screen and (max-width: 500px) {
-            font-size: 18px;
-          }
-          font-size: 20px;
-          margin-left: 3%;
-        }
-      }
-      .rightbtn {
-        height: 20px;
-        width: 18px;
-      }
-      .back {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-        width: 5%;
-        img {
-          @media only screen and (max-width: 500px) {
-            width: 8px;
-            height: 9px;
-          }
-          width: 10px;
-          height: 12px;
-        }
-      }
-    }
     .settingbtn {
       display: flex;
       align-items: center;
@@ -226,7 +171,6 @@ export default {
       overflow: hidden;
       white-space: nowrap;
       height: 8%;
-      border-bottom: solid gray 0.1px;
       margin: 0 5% 0 5%;
       .a {
         width: 95%;

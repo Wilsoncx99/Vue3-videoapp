@@ -2,13 +2,13 @@
   <div class="wrapper">
     <div class="topbar">
       <div class="icon">
-        <img @click="gotomine()" src="../assets/myicon.svg" />
+        <img @click="gotomine()" src="@/assets/myicon.svg" />
       </div>
       <div class="searchbar">
         <van-search v-model="value" placeholder="请输入搜索关键词" />
       </div>
       <div class="messagebar">
-        <img src="../assets/mail.svg" />
+        <img src="@/assets/mail.svg" />
       </div>
     </div>
     <div class="tabbar">
