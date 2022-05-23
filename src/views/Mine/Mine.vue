@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="nav" style="height: 5%"></div>
+    <div class="nav" style="height: 3%"></div>
     <div class="topbar">
       <img class="iconsize" src="@/assets/logo.png" />
       <div class="userinfo">
@@ -22,31 +22,26 @@
         <div>粉丝</div>
       </div>
     </div>
-    <div class="settingbar">
-      <div class="settingbtn" @click="gotosetting()">
-        <div class="a">
-          <div class="box">
-            <img src="@/assets/6@3x.png" />
-            <p>设置</p>
-          </div>
-        </div>
-        <div class="back"><img src="@/assets/4@2x.png" /></div>
-      </div>
-    </div>
-  </div>
+    <BtnBar @click="gotosetting()" info="设置"></BtnBar>
 
-  <van-tabbar v-model="active">
-    <van-tabbar-item to="/Home" icon="home-o">首页</van-tabbar-item>
-    <van-tabbar-item icon="search">动态</van-tabbar-item>
-    <van-tabbar-item icon="friends-o">会员购</van-tabbar-item>
-    <van-tabbar-item icon="setting-o">我的</van-tabbar-item>
-  </van-tabbar>
+    <van-tabbar v-model="active">
+      <van-tabbar-item to="/Home" icon="home-o">首页</van-tabbar-item>
+      <van-tabbar-item icon="search">动态</van-tabbar-item>
+      <van-tabbar-item icon="friends-o">会员购</van-tabbar-item>
+      <van-tabbar-item icon="setting-o">我的</van-tabbar-item>
+    </van-tabbar>
+  </div>
 </template>
 
 <script>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import BtnBar from "@/components/BtnBar.vue";
+
 export default {
+  components: {
+    BtnBar,
+  },
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Mine",
   setup() {

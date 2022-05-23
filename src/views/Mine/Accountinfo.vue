@@ -1,35 +1,36 @@
 <template>
   <div class="wrapper">
     <van-nav-bar
-      title="设置"
+      title="账号资料"
       left-arrow
       @click-left="onClickLeft"
       :border="false"
     />
-    <BtnBar @click="gotoaccsetting()" info="账号资料"></BtnBar>
+    <BtnBar @click="gotosetting()" info="设置"></BtnBar>
+    <BtnBar @click="gotosetting()" info="设置"></BtnBar>
+    <BtnBar @click="gotosetting()" info="设置"></BtnBar>
+    <BtnBar @click="gotosetting()" info="设置"></BtnBar>
+    <BtnBar @click="gotosetting()" info="设置"></BtnBar>
+    <BtnBar @click="gotosetting()" info="设置"></BtnBar>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import BtnBar from "@/components/BtnBar.vue";
 export default {
   components: {
     BtnBar,
   },
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Setting",
+  name: "Accountinfo",
   setup() {
     const value = ref("");
     const active = ref(3);
     const tab = ref(0);
-    const router = useRouter();
     const onClickLeft = () => history.back();
-    const gotoaccsetting = () => {
-      router.push({ name: "Accountinfo" });
-    };
-    return { value, active, tab, onClickLeft, gotoaccsetting };
+
+    return { value, active, tab, onClickLeft };
   },
 };
 </script>

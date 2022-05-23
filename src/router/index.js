@@ -4,6 +4,8 @@ import Register from '../views/Register/Register.vue'
 import Home from '../views/Home/Home.vue'
 import Mine from '../views/Mine/Mine.vue'
 import Setting from '../views/Mine/Setting.vue'
+import Accountinfo from '../views/Mine/Accountinfo.vue'
+
 
 const routes = [
   {
@@ -38,6 +40,11 @@ const routes = [
     path: '/Setting',
     name: 'Setting',
     component: Setting
+  },
+  {
+    path: '/Accountinfo',
+    name: 'Accountinfo',
+    component: Accountinfo
   },
 ]
 
