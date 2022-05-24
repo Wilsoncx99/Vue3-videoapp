@@ -5,6 +5,9 @@ import Home from '../views/Home/Home.vue'
 import Mine from '../views/Mine/Mine.vue'
 import Setting from '../views/Mine/Setting.vue'
 import Accountinfo from '../views/Mine/Accountinfo.vue'
+import Changename from '../views/Mine/Changename.vue'
+import Changesex from '../views/Mine/Changesex.vue'
+import Changebday from '../views/Mine/Changebday.vue'
 
 
 const routes = [
@@ -45,6 +48,21 @@ const routes = [
     path: '/Accountinfo',
     name: 'Accountinfo',
     component: Accountinfo
+  },
+  {
+    path: '/Changename',
+    name: 'Changename',
+    component: Changename
+  },
+  {
+    path: '/Changesex',
+    name: 'Changesex',
+    component: Changesex
+  },
+  {
+    path: '/Changebday',
+    name: 'Changebday',
+    component: Changebday
   },
 ]
 
