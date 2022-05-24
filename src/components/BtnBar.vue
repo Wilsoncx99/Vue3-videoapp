@@ -22,7 +22,7 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  height: 8%;
+  height: 5%;
   margin: 0 5% 0 5%;
   .a {
     width: 95%;

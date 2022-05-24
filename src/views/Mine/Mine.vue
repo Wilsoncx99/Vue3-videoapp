@@ -22,7 +22,18 @@
         <div>粉丝</div>
       </div>
     </div>
-    <BtnBar @click="gotosetting()" info="设置"></BtnBar>
+    <div class="btnbar">
+      <BtnBar @click="gotosetting()" info="设置"></BtnBar>
+      <div class="quit">
+        <div @click="quit()" class="quitbtn">
+          <div class="a">
+            <div class="box">
+              <p>退出登陆</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <van-tabbar v-model="active">
       <van-tabbar-item to="/Home" icon="home-o">首页</van-tabbar-item>
@@ -52,7 +63,10 @@ export default {
     const gotosetting = () => {
       router.push({ name: "Setting" });
     };
-    return { value, active, tab, gotosetting };
+        const quit = () => {
+      router.push({ name: "Login" });
+    };
+    return { value, active, tab, gotosetting,quit };
   },
 
   data() {
@@ -209,6 +223,37 @@ export default {
           height: 12px;
         }
       }
+    }
+  }
+  .quitbtn {
+    display: flex;
+    align-items: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 8%;
+    margin: 0 5% 0 5%;
+    .a {
+      width: 95%;
+      font-size: 30px;
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+  .btnbar {
+    display: flex;
+    flex-direction: column;
+    height: 76%;
+    .quit {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column-reverse;
     }
   }
 }

@@ -1,5 +1,19 @@
 <template>
   <div class="wrapper">
+    <van-popup
+      v-model:show="show"
+      round
+      position="bottom"
+      :style="{ height: '20%' }"
+    >
+      <div class="popup">
+        <div class="btn">男</div>
+        <div class="btn">女</div>
+        <div class="btn">保密</div>
+        <div class="btn">取消</div>
+      </div>
+    </van-popup>
+
     <van-nav-bar
       title="账号资料"
       left-arrow
@@ -17,17 +31,9 @@
     </div>
 
     <BtnBar @click="changename()" info="昵称"></BtnBar>
-    <BtnBar @click="changesex()" info="性别"></BtnBar>
+    <BtnBar @click="showPopup" info="性别"></BtnBar>
     <BtnBar @click="changebday()" info="出生年月"></BtnBar>
     <BtnBar @click="changeinfo()" info="个性签名"></BtnBar>
-
-    <div @click="quit()" class="settingbtn">
-      <div class="a">
-        <div class="box">
-          <p>退出登陆</p>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -47,11 +53,15 @@ export default {
     const active = ref(3);
     const tab = ref(0);
     const router = useRouter();
+    const show = ref(false);
+    const showPopup = () => {
+      show.value = true;
+    };
     const changename = () => {
       router.push({ name: "Changename" });
     };
-    const changesex = () => {
-      router.push({ name: "Changesex" });
+    const changeinfo = () => {
+      router.push({ name: "Changeinfo" });
     };
     const changebday = () => {
       router.push({ name: "Changebday" });
@@ -70,11 +80,13 @@ export default {
       active,
       tab,
       fileList,
+      show,
       onClickLeft,
       changename,
-      changesex,
+      changeinfo,
       changebday,
       quit,
+      showPopup,
     };
   },
 };
@@ -86,58 +98,16 @@ export default {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  .settingbtn {
+  .popup {
     display: flex;
-    align-items: center;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    height: 8%;
-    margin: 0 5% 0 5%;
-    .a {
-      width: 95%;
-      font-size: 30px;
-      .box {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        .van-uploader {
-          opacity: 0;
-        }
-      }
-      img {
-        @media only screen and (max-width: 500px) {
-          height: 30px;
-          width: 30px;
-        }
-        height: 45px;
-        width: 45px;
-      }
-      p {
-        @media only screen and (max-width: 500px) {
-          font-size: 18px;
-        }
-        font-size: 20px;
-        margin-left: 3%;
-      }
-    }
-    .rightbtn {
-      height: 20px;
-      width: 18px;
-    }
-    .back {
+    flex-direction: column;
+    .btn {
       display: flex;
-      flex-direction: row-reverse;
       align-items: center;
-      width: 5%;
-      img {
-        @media only screen and (max-width: 500px) {
-          width: 8px;
-          height: 9px;
-        }
-        width: 10px;
-        height: 12px;
-      }
+      justify-content: center;
+      width: 100%;
+      height:2.5rem;
+      border: grey solid 0.1px;
     }
   }
 }

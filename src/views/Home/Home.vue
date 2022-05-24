@@ -14,12 +14,16 @@
     <div class="tabbar">
       <van-tabs v-model:active="tab">
         <van-tab title="直播">
-          <van-pull-refresh
-            style="min-height: 100vh"
-            v-model="loading"
-            @refresh="onRefresh"
-          >
-            <p style="min-height: 100vh">直播内容</p>
+          <van-pull-refresh v-model="loading" @refresh="onRefresh">
+            <div class="videolist" style="min-height: 90vh">
+              <div
+                class="video"
+                v-for="(item, index) in videolist"
+                :key="index"
+              >
+                {{ item.id }}
+              </div>
+            </div>
           </van-pull-refresh>
         </van-tab>
         <van-tab title="视频">
@@ -69,6 +73,23 @@ export default {
     return {
       username: "",
       password: "",
+      videolist: [
+        {
+          id: "1",
+        },
+        {
+          id: "1",
+        },
+        {
+          id: "1",
+        },
+        {
+          id: "1",
+        },
+        {
+          id: "1",
+        },
+      ],
     };
   },
   methods: {
@@ -112,10 +133,17 @@ export default {
     }
   }
   .tabbar {
-    p {
+    .videolist {
+      background: rgb(243, 171, 171);
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: space-between;
+      .video {
+        background: black;
+        width: 200px;
+        height: 200px;
+      }
     }
   }
 }
