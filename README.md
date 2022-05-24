@@ -1,6 +1,6 @@
-# Ecommerce-app 
-Use Vue 3.0 flramework, with Vant3 UI framework.
-
+# Vue3.0 videoplayer app for iphone 12 pro +++ 
+Technology stack: Vue3 + Vuex + Vue-router + ES6/7 + scss + flex + Vant3
+Creater : Wilson Chen 
 ## Project setup
 ```
 npm install
