@@ -9,22 +9,34 @@
 
   <div class="input">
     <div class="name">
-      <van-field v-model="value" clearable placeholder="请输入新昵称" />
+      <van-field v-model="username" clearable placeholder="请输入新昵称" />
     </div>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Changename",
   setup() {
-    const value = ref("");
+    const username = ref("");
+    const router = useRouter();
     const onClickLeft = () => history.back();
+    const onClickRight = () => {
+      router.push({
+        path: "/Accountinfo",
+        query: {
+          username,
+        },
+      });
+    };
+
     return {
       onClickLeft,
-      value,
+      username,
+      onClickRight,
     };
   },
 };

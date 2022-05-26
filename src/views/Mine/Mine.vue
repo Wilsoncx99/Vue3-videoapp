@@ -24,15 +24,8 @@
     </div>
     <div class="btnbar">
       <BtnBar @click="gotosetting()" info="设置"></BtnBar>
-      <div class="quit">
-        <div @click="quit()" class="quitbtn">
-          <div class="a">
-            <div class="box">
-              <p>退出登陆</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="quit"></div>
+         <van-button type="primary" size="large">退出登陆</van-button>
     </div>
 
     <van-tabbar v-model="active">
@@ -250,6 +243,12 @@ export default {
     display: flex;
     flex-direction: column;
     height: 76%;
+    .van-button {
+      border-radius: 2rem;
+      margin-bottom: 5%;
+      width:50%;
+      align-self: center;
+    }
     .quit {
       display: flex;
       flex-grow: 1;

@@ -4,7 +4,7 @@ const baseURL = '/carnival_tbs_demo'
 export function register(data) {
   return request({
     baseURL,
-    url: 'user_register_judgment_jsons.tml',
+    url: 'user_register_jsons.tml',
     method: 'post',
     data
   });

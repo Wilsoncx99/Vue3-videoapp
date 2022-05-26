@@ -20,7 +20,7 @@
       @click-left="onClickLeft"
       :border="false"
     />
-    <div class="settingbtn">
+    <!-- <div class="settingbtn">
       <div class="a">
         <div class="box">
           <p>头像</p>
@@ -28,9 +28,9 @@
         </div>
       </div>
       <div class="back"><img src="@/assets/4@2x.png" /></div>
-    </div>
+    </div> -->
 
-    <BtnBar @click="changename()" info="昵称"></BtnBar>
+    <BtnBar @click="changename()" info="昵称" ></BtnBar>
     <BtnBar @click="showPopup" info="性别"></BtnBar>
     <BtnBar @click="changebday()" info="出生年月"></BtnBar>
     <BtnBar @click="changeinfo()" info="个性签名"></BtnBar>
@@ -98,6 +98,7 @@ export default {
   flex-direction: column;
   height: 100%;
   width: 100%;
+
   .popup {
     display: flex;
     flex-direction: column;
@@ -106,7 +107,7 @@ export default {
       align-items: center;
       justify-content: center;
       width: 100%;
-      height:2.5rem;
+      height: 2.5rem;
       border: grey solid 0.1px;
     }
   }

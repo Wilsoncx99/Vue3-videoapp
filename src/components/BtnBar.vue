@@ -5,13 +5,14 @@
         <p>{{ info }}</p>
       </div>
     </div>
+    <span>{{userinfo}}</span>
     <div class="back"><img src="@/assets/4@2x.png" /></div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["info"],
+  props: ["info","userinfo"],
 };
 </script>
 

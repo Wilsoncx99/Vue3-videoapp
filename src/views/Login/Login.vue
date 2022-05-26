@@ -22,6 +22,7 @@
         </van-cell-group>
         <div style="margin: 16px">
           <van-button
+            color="#ff9db5"
             @click="handlelogin()"
             round
             block
@@ -79,8 +80,8 @@ export default {
     justify-content: center;
     flex-grow: 1;
     .iconsize {
-      height: 5rem;
-      width: 5rem;
+      height: 30.769vw;
+      width: 58.974vw;
     }
   }
   .formbox {
