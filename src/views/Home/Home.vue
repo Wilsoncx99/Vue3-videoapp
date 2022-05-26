@@ -14,16 +14,12 @@
     <div class="tabbar">
       <van-tabs v-model:active="tab">
         <van-tab title="直播">
-          <van-pull-refresh v-model="loading" @refresh="onRefresh">
-            <div class="videolist" style="min-height: 90vh">
-              <div
-                class="video"
-                v-for="(item, index) in videolist"
-                :key="index"
-              >
-                {{ item.id }}
-              </div>
-            </div>
+          <van-pull-refresh
+            style="min-height: 100vh"
+            v-model="loading"
+            @refresh="onRefresh"
+          >
+            <p style="min-height: 100vh">视频内容</p>
           </van-pull-refresh>
         </van-tab>
         <van-tab title="视频">

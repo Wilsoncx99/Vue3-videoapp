@@ -27,31 +27,24 @@ export default {
   margin: 0 5% 0 5%;
   .a {
     width: 95%;
-    font-size: 30px;
+    font-size: 7.692vw;
     .box {
       display: flex;
       align-items: center;
       justify-content: flex-start;
     }
     img {
-      @media only screen and (max-width: 500px) {
-        height: 30px;
-        width: 30px;
-      }
-      height: 45px;
-      width: 45px;
+      height: 11.538vw;
+      width: 11.538vw;
     }
     p {
-      @media only screen and (max-width: 500px) {
-        font-size: 18px;
-      }
-      font-size: 20px;
+      font-size: 5.128vw;
       margin-left: 3%;
     }
   }
   .rightbtn {
-    height: 20px;
-    width: 18px;
+    height: 5.128vw;
+    width: 4.615vw;
   }
   .back {
     display: flex;
@@ -59,12 +52,8 @@ export default {
     align-items: center;
     width: 5%;
     img {
-      @media only screen and (max-width: 500px) {
-        width: 8px;
-        height: 9px;
-      }
-      width: 10px;
-      height: 12px;
+      width: 2.564vw;
+      height: 3.077vw;
     }
   }
 }

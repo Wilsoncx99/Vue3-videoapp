@@ -71,13 +71,13 @@ const router = createRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   const isLogin = localStorage.isLogin;
-//   if (!isLogin && (to.name !== 'Login' && to.name !== "Register")) {
-//     next({ name: 'Login' });
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  const isLogin = localStorage.isLogin;
+  if (!isLogin && (to.name !== 'Login' && to.name !== "Register")) {
+    next({ name: 'Login' });
+  } else {
+    next()
+  }
+})
 
 export default router

@@ -9,6 +9,7 @@
           name="用户名"
           label="用户名"
           placeholder="请填写用户名"
+          clearable
           :rules="[{ required: true, message: '请填写用户名' }]"
         />
         <van-field
@@ -16,6 +17,7 @@
           name="密码"
           label="手机号"
           placeholder="请填写手机号"
+          clearable
           :rules="[{ required: true, message: '请填写手机号' }]"
         />
         <van-field
@@ -24,6 +26,7 @@
           name="密码"
           label="密码"
           placeholder="请填写密码"
+          clearable
           :rules="[{ required: true, message: '请填写密码' }]"
         />
       </van-cell-group>
@@ -63,9 +66,6 @@ export default {
       legalPerson: "changliang",
     });
 
-    const username = ref("");
-    const password = ref("");
-    const tel = ref("");
     const router = useRouter();
     const back = () => history.back();
 
@@ -73,14 +73,20 @@ export default {
       register(userinfo)
         .then((response) => {
           console.log(response);
+          router.push({
+            path: "/",
+            query: {
+              username: userinfo.name,
+              password: userinfo.password,
+            },
+          });
         })
         .catch((error) => {
           console.log(error);
-          router.push({ name: "Login" });
         });
     };
 
-    return { username, password, tel, userinfo, onSubmit, back };
+    return { userinfo, onSubmit, back };
   },
 };
 </script>

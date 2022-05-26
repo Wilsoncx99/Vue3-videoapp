@@ -7,10 +7,10 @@
       :style="{ height: '20%' }"
     >
       <div class="popup">
-        <div class="btn">男</div>
-        <div class="btn">女</div>
-        <div class="btn">保密</div>
-        <div class="btn">取消</div>
+        <div class="btn" @click="boy()">男</div>
+        <div class="btn" @click="girl()">女</div>
+        <div class="btn" @click="serect()">保密</div>
+        <div class="btn" @click="offPopup">取消</div>
       </div>
     </van-popup>
 
@@ -30,8 +30,8 @@
       <div class="back"><img src="@/assets/4@2x.png" /></div>
     </div> -->
 
-    <BtnBar @click="changename()" info="昵称" ></BtnBar>
-    <BtnBar @click="showPopup" info="性别"></BtnBar>
+    <BtnBar @click="changename()" info="昵称" :userinfo="data"></BtnBar>
+    <BtnBar @click="showPopup" info="性别" :userinfo="sex"></BtnBar>
     <BtnBar @click="changebday()" info="出生年月"></BtnBar>
     <BtnBar @click="changeinfo()" info="个性签名"></BtnBar>
   </div>
@@ -40,6 +40,7 @@
 <script>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import BtnBar from "@/components/BtnBar.vue";
 
 export default {
@@ -53,9 +54,29 @@ export default {
     const active = ref(3);
     const tab = ref(0);
     const router = useRouter();
+    const route = useRoute();
     const show = ref(false);
+    const data = route.query.username;
+    const sex = ref("");
+
     const showPopup = () => {
       show.value = true;
+    };
+    const offPopup = () => {
+      show.value = false;
+    };
+
+    const boy = () => {
+      sex.value = "男";
+      show.value = false;
+    };
+    const girl = () => {
+      sex.value = "女";
+      show.value = false;
+    };
+    const serect = () => {
+      sex.value = "保密";
+      show.value = false;
     };
     const changename = () => {
       router.push({ name: "Changename" });
@@ -81,12 +102,18 @@ export default {
       tab,
       fileList,
       show,
+      data,
+      sex,
       onClickLeft,
       changename,
       changeinfo,
       changebday,
       quit,
       showPopup,
+      offPopup,
+      boy,
+      girl,
+      serect,
     };
   },
 };
@@ -108,7 +135,7 @@ export default {
       justify-content: center;
       width: 100%;
       height: 2.5rem;
-      border: grey solid 0.1px;
+      border: grey solid 0.003vw;
     }
   }
 }

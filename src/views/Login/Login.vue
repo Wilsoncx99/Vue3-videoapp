@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="iconbox">
-      <img class="iconsize" src="@/assets/logo.png" />
+      <img class="iconsize" src="@/assets/logo.jpeg" />
     </div>
     <div class="formbox">
       <van-form @submit="onSubmit">
@@ -20,7 +20,7 @@
             clearable
           />
         </van-cell-group>
-        <div style="margin: 16px">
+        <div style="margin: 16.002px">
           <van-button
             color="#ff9db5"
             @click="handlelogin()"
@@ -35,7 +35,6 @@
       </van-form>
       <div class="regbar">
         <div class="box" @click="handlereg()">立即注册</div>
-        <div>忘记密码</div>
       </div>
     </div>
     <div class="submitbox"></div>
@@ -45,18 +44,29 @@
 <script>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import { Toast } from "vant";
+import { useRoute } from "vue-router";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Login",
   setup() {
     let username = ref("");
     let password = ref("");
-    // username = localStorage.getItem("username");
-    // password = localStorage.getItem("password");
-
+    const route = useRoute();
     const router = useRouter();
+    username = route.query.username;
+    password = route.query.password;
+
+    console.log(username)
+        console.log(password)
+
     const handlelogin = () => {
       localStorage.isLogin = true;
+      Toast.loading({
+        message: "加载中...",
+        forbidClick: true,
+      });
+      Toast.success("登陆成功");
       router.push({ name: "Home" });
     };
     const handlereg = () => {
@@ -73,15 +83,15 @@ export default {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background-color: #f7f7f7;
+  background-color: #ffffff;
   .iconbox {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-grow: 1;
+    height: 50vw;
     .iconsize {
-      height: 30.769vw;
-      width: 58.974vw;
+      height: 50vw;
+      width: 60vw;
     }
   }
   .formbox {
@@ -91,13 +101,8 @@ export default {
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      height: 3rem;
+      height: 2.564vw;
       color: grey;
-      .box {
-        border-right: solid 0.1rem grey;
-        padding: 0 1rem 0 0;
-        margin-right: 1rem;
-      }
     }
   }
   .submitbox {

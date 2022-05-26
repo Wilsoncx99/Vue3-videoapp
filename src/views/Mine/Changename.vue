@@ -28,7 +28,7 @@ export default {
       router.push({
         path: "/Accountinfo",
         query: {
-          username,
+          username: username.value,
         },
       });
     };
