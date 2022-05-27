@@ -2,8 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Login from '../views/Login/Login.vue'
 import Register from '../views/Register/Register.vue'
 import Home from '../views/Home/Home.vue'
+import Leavecenter from '../views/Leavecenter/Leavecenter.vue'
+import Shopcenter from '../views/Shopcenter/Shopcenter.vue'
 import Mine from '../views/Mine/Mine.vue'
-import Setting from '../views/Mine/Setting.vue'
 import Accountinfo from '../views/Mine/Accountinfo.vue'
 import Changename from '../views/Mine/Changename.vue'
 import Changeinfo from '../views/Mine/Changeinfo.vue'
@@ -35,14 +36,19 @@ const routes = [
     component: Home
   },
   {
+    path: '/Shopcenter',
+    name: 'Shopcenter',
+    component: Shopcenter
+  },
+  {
+    path: '/Leavecenter',
+    name: 'Leavecenter',
+    component: Leavecenter
+  },
+  {
     path: '/Mine',
     name: 'Mine',
     component: Mine
-  },
-  {
-    path: '/Setting',
-    name: 'Setting',
-    component: Setting
   },
   {
     path: '/Accountinfo',

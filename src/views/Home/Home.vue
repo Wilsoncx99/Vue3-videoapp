@@ -2,17 +2,18 @@
   <div class="wrapper">
     <div class="topbar">
       <div class="icon">
-        <img @click="gotomine()" src="@/assets/myicon.svg" />
+        <img src="@/assets/logo.png" />
       </div>
       <div class="searchbar">
         <van-search v-model="value" placeholder="请输入搜索关键词" />
       </div>
-      <div class="messagebar">
-        <img src="@/assets/mail.svg" />
+      <div @click="gotomine()" class="messagebar">
+        <img src="@/assets/myicon.svg" />
       </div>
     </div>
+
     <div class="tabbar">
-      <van-tabs v-model:active="tab">
+      <van-tabs v-model:active="tab" swipe-threshold="3">
         <van-tab title="直播">
           <van-pull-refresh
             style="min-height: 100vh"
@@ -22,7 +23,43 @@
             <p style="min-height: 100vh">视频内容</p>
           </van-pull-refresh>
         </van-tab>
-        <van-tab title="视频">
+        <van-tab title="动画">
+          <van-pull-refresh
+            style="min-height: 100vh"
+            v-model="loading"
+            @refresh="onRefresh"
+          >
+            <p style="min-height: 100vh">视频内容</p>
+          </van-pull-refresh>
+        </van-tab>
+        <van-tab title="番剧">
+          <van-pull-refresh
+            style="min-height: 100vh"
+            v-model="loading"
+            @refresh="onRefresh"
+          >
+            <p style="min-height: 100vh">视频内容</p>
+          </van-pull-refresh>
+        </van-tab>
+        <van-tab title="原创">
+          <van-pull-refresh
+            style="min-height: 100vh"
+            v-model="loading"
+            @refresh="onRefresh"
+          >
+            <p style="min-height: 100vh">视频内容</p>
+          </van-pull-refresh>
+        </van-tab>
+        <van-tab title="音乐">
+          <van-pull-refresh
+            style="min-height: 100vh"
+            v-model="loading"
+            @refresh="onRefresh"
+          >
+            <p style="min-height: 100vh">视频内容</p>
+          </van-pull-refresh>
+        </van-tab>
+        <van-tab title="舞蹈">
           <van-pull-refresh
             style="min-height: 100vh"
             v-model="loading"
@@ -37,8 +74,8 @@
 
   <van-tabbar v-model="active">
     <van-tabbar-item icon="home-o">首页</van-tabbar-item>
-    <van-tabbar-item icon="search">动态</van-tabbar-item>
-    <van-tabbar-item icon="friends-o">会员购</van-tabbar-item>
+    <van-tabbar-item to="/Leavecenter" icon="search">动态</van-tabbar-item>
+    <van-tabbar-item to="/Shopcenter" icon="friends-o">会员购</van-tabbar-item>
     <van-tabbar-item to="/Mine" icon="setting-o">我的</van-tabbar-item>
   </van-tabbar>
 </template>
@@ -46,6 +83,7 @@
 <script>
 import { ref } from "vue";
 import { Toast } from "vant";
+import { useRouter } from "vue-router";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -55,7 +93,11 @@ export default {
     const active = ref(0);
     const tab = ref(0);
     const count = ref(0);
+    const router = useRouter();
     const loading = ref(false);
+    const gotomine = () => {
+      router.push({ name: "Mine" });
+    };
     const onRefresh = () => {
       setTimeout(() => {
         Toast("刷新成功");
@@ -63,37 +105,7 @@ export default {
         count.value++;
       }, 1000);
     };
-    return { value, active, tab, count, loading, onRefresh };
-  },
-  data() {
-    return {
-      username: "",
-      password: "",
-      videolist: [
-        {
-          id: "1",
-        },
-        {
-          id: "1",
-        },
-        {
-          id: "1",
-        },
-        {
-          id: "1",
-        },
-        {
-          id: "1",
-        },
-      ],
-    };
-  },
-  methods: {
-    gotomine() {
-      this.$router.push({
-        name: "Mine",
-      });
-    },
+    return { value, active, tab, count, loading, onRefresh, gotomine };
   },
 };
 </script>
@@ -107,24 +119,29 @@ export default {
   .topbar {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     height: 5%;
-    img {
-      height: 2rem;
-      width: 2rem;
-    }
+    width: 100%;
     .icon {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      width:25%;
       flex-grow: 1;
+      img {
+        height: 80%;
+        width: 90%;
+      }
     }
     .messagebar {
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-grow: 1;
+      img {
+        height: 30px;
+        width: 30px;
+      }
     }
     .searchbar {
+      height: 100%;
       flex-grow: 1;
     }
   }

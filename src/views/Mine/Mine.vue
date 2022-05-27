@@ -1,37 +1,45 @@
 <template>
   <div class="wrapper">
-    <div class="nav" style="height: 3%"></div>
-    <div class="topbar">
-      <img class="iconsize" src="@/assets/icon.jpg" />
-      <div class="userinfo">
-        <div class="username">{{ username }}</div>
-        <div class="usergold">B币:{{ bcoin }} 硬币{{ coin }}</div>
+    <div class="userbox">
+      <div class="icon">
+        <img src="@/assets/icon.jpg" />
+      </div>
+      <div class="infobox">
+        <div class="userinfo">
+          <div class="box">
+            <div>{{ fans }}</div>
+            <div>粉丝</div>
+          </div>
+          <div class="split"></div>
+          <div class="box">
+            <div>{{ follow }}</div>
+            <div>关注</div>
+          </div>
+          <div class="split"></div>
+          <div class="box">
+            <div>{{ like }}</div>
+            <div>获赞</div>
+          </div>
+        </div>
+        <div class="changeinfo">
+          <div class="infobtn" @click="gotosetting()">编辑资料</div>
+        </div>
       </div>
     </div>
-    <div class="threebox">
-      <div class="a">
-        <div>0</div>
-        <div>动态</div>
-      </div>
-      <div class="b">
-        <div>0</div>
-        <div>分享</div>
-      </div>
-      <div class="c">
-        <div>0</div>
-        <div>粉丝</div>
-      </div>
+    <div class="username">
+      <span>{{ username }}</span>
+      <div>这个人很神秘，什么都没有写</div>
     </div>
-    <div class="btnbar">
-      <BtnBar @click="gotosetting()" info="设置"> </BtnBar>
-      <div class="quit"></div>
-      <van-button type="primary" size="large">退出登陆</van-button>
-    </div>
+
+    <van-tabs v-model:active="tab">
+      <van-tab title="动态"> </van-tab>
+      <van-tab title="视频"> </van-tab>
+    </van-tabs>
 
     <van-tabbar v-model="active">
       <van-tabbar-item to="/Home" icon="home-o">首页</van-tabbar-item>
-      <van-tabbar-item icon="search">动态</van-tabbar-item>
-      <van-tabbar-item icon="friends-o">会员购</van-tabbar-item>
+      <van-tabbar-item to="/Leavecenter" icon="search">动态</van-tabbar-item>
+      <van-tabbar-item to="/Shopcenter" icon="friends-o">会员购</van-tabbar-item>
       <van-tabbar-item icon="setting-o">我的</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -40,34 +48,35 @@
 <script>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import BtnBar from "@/components/BtnBar.vue";
 
 export default {
-  components: {
-    BtnBar,
-  },
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Mine",
   setup() {
     const value = ref("");
     const active = ref(3);
     const tab = ref(0);
+    const fans = ref(0);
+    const follow = ref(0);
+    const like = ref(0);
+    const username = ref("打工人Wilson");
     const router = useRouter();
     const gotosetting = () => {
-      router.push({ name: "Setting" });
+      router.push({ name: "Accountinfo" });
     };
     const quit = () => {
       router.push({ name: "Login" });
     };
-    return { value, active, tab, gotosetting, quit };
-  },
-
-  data() {
     return {
-      username: "打工人Wilson",
-      bcoin: "10",
-      coin: "5",
-      password: "",
+      value,
+      active,
+      tab,
+      fans,
+      follow,
+      like,
+      username,
+      gotosetting,
+      quit,
     };
   },
 };
@@ -79,181 +88,75 @@ export default {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  .topbar {
+  .userbox {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    height: 5%;
-    img {
-      padding: 0 0 0 2%;
-      height: 4rem;
-      width: 4rem;
-    }
-    .userinfo {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      width: 100%;
-      padding: 0 0 0 3%;
-      .username {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        height: 50%;
-        color: red;
-      }
-      .usergold {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        height: 50%;
-      }
-    }
+    height: 30.769vw;
     .icon {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-grow: 1;
-    }
-    .messagebar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-grow: 1;
-    }
-    .searchbar {
-      flex-grow: 1;
+      width: 50%;
+      height: 100%;
+      img {
+        height: 25.641vw;
+        width: 28.205vw;
+      }
     }
   }
-  .threebox {
+  .infobox {
     display: flex;
-    flex-direction: row;
-    height: 10%;
-    span {
-      display: block;
-    }
-    .a {
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    .userinfo {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      flex-grow: 1;
-      margin: 7% 0 7% 0;
-      border-right: solid 0.1rem gray;
-    }
-    .b {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      flex-grow: 1;
-      margin: 7% 0 7% 0;
-      border-right: solid 0.1rem gray;
-    }
-    .c {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-  }
-  .settingbar {
-    height: 80%;
-    .spacebar {
-      height: 2%;
+      flex-direction: row;
       width: 100%;
-      background: #f7f7f7;
-    }
-    .settingbtn {
-      display: flex;
-      align-items: center;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      height: 8%;
-      margin: 0 5% 0 5%;
-      .a {
-        width: 95%;
-        font-size: 30px;
-        .box {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-        }
-        img {
-          @media only screen and (max-width: 500px) {
-            height: 30px;
-            width: 30px;
-          }
-          height: 45px;
-          width: 45px;
-        }
-        p {
-          @media only screen and (max-width: 500px) {
-            font-size: 18px;
-          }
-          font-size: 20px;
-          margin-left: 3%;
-        }
-      }
-      .rightbtn {
-        height: 20px;
-        width: 18px;
-      }
-      .back {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-        width: 5%;
-        img {
-          @media only screen and (max-width: 500px) {
-            width: 8px;
-            height: 9px;
-          }
-          width: 10px;
-          height: 12px;
-        }
-      }
-    }
-  }
-  .quitbtn {
-    display: flex;
-    align-items: center;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    height: 8%;
-    margin: 0 5% 0 5%;
-    .a {
-      width: 95%;
-      font-size: 30px;
+      height: 50%;
       .box {
+        width: 34%;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
       }
-      p {
-        font-size: 15px;
+    }
+    .split {
+      margin: 3.846vw 0 3.846vw 0;
+      border: solid 0.101px grey;
+    }
+    .changeinfo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 50%;
+      .infobtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 61.538vw;
+        height: 7.692vw;
+        color: #ff9db5;
+        border-radius: 1.282vw;
+        border: solid 0.256vw #ff9db5;
       }
     }
   }
-  .btnbar {
-    display: flex;
-    flex-direction: column;
-    height: 76%;
-    .van-button {
-      border-radius: 2rem;
-      margin-bottom: 5%;
-      width: 50%;
-      align-self: center;
+  .username {
+    div {
+      margin: 1vw 0 1vw 2.564vw;
+      font-size: 3.5vw;
+      color: grey;
     }
-    .quit {
-      display: flex;
-      flex-grow: 1;
-      flex-direction: column-reverse;
+    span {
+      margin-left: 2.564vw;
+      font-size: 4.615vw;
     }
+  }
+  van-tab {
+    border: solid black 1px;
   }
 }
 </style>

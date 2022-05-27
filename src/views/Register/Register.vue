@@ -48,7 +48,6 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { ref } from "vue";
 import { reactive } from "vue";
 import TopBar from "@/components/TobBar.vue";
 import { register } from "@/api/register";

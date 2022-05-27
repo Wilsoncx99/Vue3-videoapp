@@ -50,15 +50,16 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Login",
   setup() {
-    let username = ref("");
-    let password = ref("");
+    const username = ref("");
+    const password = ref("");
     const route = useRoute();
     const router = useRouter();
-    username = route.query.username;
-    password = route.query.password;
 
-    console.log(username)
-        console.log(password)
+    username.value = route.query.username;
+    password.value = route.query.password;
+
+    console.log(username);
+    console.log(password);
 
     const handlelogin = () => {
       localStorage.isLogin = true;
