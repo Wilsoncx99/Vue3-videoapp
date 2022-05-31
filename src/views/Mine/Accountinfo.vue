@@ -1,19 +1,5 @@
 <template>
   <div class="wrapper">
-    <van-popup
-      v-model:show="show"
-      round
-      position="bottom"
-      :style="{ height: '20%' }"
-    >
-      <div class="popup">
-        <div class="btn" @click="boy()">男</div>
-        <div class="btn" @click="girl()">女</div>
-        <div class="btn" @click="serect()">保密</div>
-        <div class="btn" @click="offPopup">取消</div>
-      </div>
-    </van-popup>
-
     <van-nav-bar
       title="账号资料"
       left-arrow
@@ -34,6 +20,20 @@
     <BtnBar @click="showPopup" info="性别" :userinfo="sex"></BtnBar>
     <BtnBar @click="changebday()" info="出生年月"></BtnBar>
     <BtnBar @click="changeinfo()" info="个性签名"></BtnBar>
+
+    <van-popup
+      v-model:show="show"
+      round
+      position="bottom"
+      :style="{ height: '20%' }"
+    >
+      <div class="popup">
+        <div class="btn" @click="boy()">男</div>
+        <div class="btn" @click="girl()">女</div>
+        <div class="btn" @click="serect()">保密</div>
+        <div class="btn" @click="offPopup">取消</div>
+      </div>
+    </van-popup>
   </div>
 </template>
 

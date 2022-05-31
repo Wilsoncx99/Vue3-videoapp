@@ -38,7 +38,7 @@ export default {
       width: 11.538vw;
     }
     p {
-      font-size: 5.128vw;
+      font-size: 4.5vw;
       margin-left: 3%;
     }
   }

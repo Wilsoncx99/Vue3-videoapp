@@ -20,7 +20,11 @@
             v-model="loading"
             @refresh="onRefresh"
           >
-            <p style="min-height: 100vh">视频内容</p>
+            <div style="min-height: 100vh">
+              <div class="videolist">
+                <div v-for="(item,index) in category" :key="index" class="video"></div>
+              </div>
+            </div>
           </van-pull-refresh>
         </van-tab>
         <van-tab title="动画">
@@ -95,6 +99,7 @@ export default {
     const count = ref(0);
     const router = useRouter();
     const loading = ref(false);
+    const category = [1,2,3,4,5,6,7,8];
     const gotomine = () => {
       router.push({ name: "Mine" });
     };
@@ -105,7 +110,7 @@ export default {
         count.value++;
       }, 1000);
     };
-    return { value, active, tab, count, loading, onRefresh, gotomine };
+    return { value, active, tab, count, loading, category, onRefresh, gotomine };
   },
 };
 </script>
@@ -125,7 +130,7 @@ export default {
     width: 100%;
     .icon {
       display: flex;
-      width:25%;
+      width: 25%;
       flex-grow: 1;
       img {
         height: 80%;
@@ -142,20 +147,21 @@ export default {
     }
     .searchbar {
       height: 100%;
-      flex-grow: 1;
+      flex-grow: 2;
     }
   }
   .tabbar {
     .videolist {
-      background: rgb(243, 171, 171);
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: space-between;
+      justify-content: space-around;
       .video {
-        background: black;
-        width: 200px;
-        height: 200px;
+        height:30vw;
+        margin: 1.389vw 0 0 0;
+        width: 45%;
+        background-color:black;
+        // background-image: url(@/assets/logo.png);
+        // background-size: 150px 120px;
       }
     }
   }
