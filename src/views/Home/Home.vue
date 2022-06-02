@@ -22,7 +22,19 @@
           >
             <div style="min-height: 100vh">
               <div class="videolist">
-                <div v-for="(item,index) in category" :key="index" class="video"></div>
+                <div
+                  v-for="(item, index) in category"
+                  :key="index"
+                  class="videobox"
+                >
+                  <div class="video">
+                    <div class="comment">
+                      <span>播放{{ item.number }}</span>
+                      <span>评论{{ item.commentnum }}</span>
+                    </div>
+                  </div>
+                  <div class="videoinfo">{{ item.videoinfo }}</div>
+                </div>
               </div>
             </div>
           </van-pull-refresh>
@@ -33,7 +45,16 @@
             v-model="loading"
             @refresh="onRefresh"
           >
-            <p style="min-height: 100vh">视频内容</p>
+            <div class="videolist">
+              <div
+                v-for="(item, index) in category"
+                :key="index"
+                class="videobox"
+              >
+                <div class="video"></div>
+                <div class="videoinfo">{{ item.videoinfo }}</div>
+              </div>
+            </div>
           </van-pull-refresh>
         </van-tab>
         <van-tab title="番剧">
@@ -42,7 +63,16 @@
             v-model="loading"
             @refresh="onRefresh"
           >
-            <p style="min-height: 100vh">视频内容</p>
+            <div class="videolist">
+              <div
+                v-for="(item, index) in category"
+                :key="index"
+                class="videobox"
+              >
+                <div class="video"></div>
+                <div class="videoinfo">{{ item.videoinfo }}</div>
+              </div>
+            </div>
           </van-pull-refresh>
         </van-tab>
         <van-tab title="原创">
@@ -51,7 +81,16 @@
             v-model="loading"
             @refresh="onRefresh"
           >
-            <p style="min-height: 100vh">视频内容</p>
+            <div class="videolist">
+              <div
+                v-for="(item, index) in category"
+                :key="index"
+                class="videobox"
+              >
+                <div class="video"></div>
+                <div class="videoinfo">{{ item.videoinfo }}</div>
+              </div>
+            </div>
           </van-pull-refresh>
         </van-tab>
         <van-tab title="音乐">
@@ -60,7 +99,16 @@
             v-model="loading"
             @refresh="onRefresh"
           >
-            <p style="min-height: 100vh">视频内容</p>
+            <div class="videolist">
+              <div
+                v-for="(item, index) in category"
+                :key="index"
+                class="videobox"
+              >
+                <div class="video"></div>
+                <div class="videoinfo">{{ item.videoinfo }}</div>
+              </div>
+            </div>
           </van-pull-refresh>
         </van-tab>
         <van-tab title="舞蹈">
@@ -69,7 +117,18 @@
             v-model="loading"
             @refresh="onRefresh"
           >
-            <p style="min-height: 100vh">视频内容</p>
+            <div class="videolist">
+              <div
+                v-for="(item, index) in category"
+                :key="index"
+                class="videobox"
+              >
+                <div class="video">
+                  <div class="comment"></div>
+                </div>
+                <div class="videoinfo">{{ item.videoinfo }}</div>
+              </div>
+            </div>
           </van-pull-refresh>
         </van-tab>
       </van-tabs>
@@ -85,7 +144,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import { Toast } from "vant";
 import { useRouter } from "vue-router";
 
@@ -99,7 +158,56 @@ export default {
     const count = ref(0);
     const router = useRouter();
     const loading = ref(false);
-    const category = [1,2,3,4,5,6,7,8];
+    const category = reactive([
+      {
+        id: 1,
+        number: "1万",
+        commentnum: "14",
+        videoinfo: "无语拉！鸣人惨遭削弱",
+      },
+      {
+        id: 2,
+        number: "10万",
+        commentnum: "150",
+        videoinfo: "哇！圣斗士来了",
+      },
+      {
+        id: 3,
+        number: "100万",
+        commentnum: "1670",
+        videoinfo: "哇！圣斗士来了",
+      },
+      {
+        id: 4,
+        number: "19万",
+        commentnum: "110",
+        videoinfo: "哇！圣斗士来了",
+      },
+      {
+        id: 5,
+        number: "15万",
+        commentnum: "110",
+        videoinfo: "哇！圣斗士来了",
+      },
+      {
+        id: 6,
+        number: "113万",
+        commentnum: "110",
+        videoinfo: "哇！圣斗士来了",
+      },
+      {
+        id: 7,
+        number: "133万",
+        commentnum: "1150",
+        videoinfo: "哇！圣斗士来了",
+      },
+      {
+        id: 8,
+        number: "121万",
+        commentnum: "1",
+        videoinfo: "哇！圣斗士来了",
+      },
+    ]);
     const gotomine = () => {
       router.push({ name: "Mine" });
     };
@@ -110,7 +218,16 @@ export default {
         count.value++;
       }, 1000);
     };
-    return { value, active, tab, count, loading, category, onRefresh, gotomine };
+    return {
+      value,
+      active,
+      tab,
+      count,
+      loading,
+      category,
+      onRefresh,
+      gotomine,
+    };
   },
 };
 </script>
@@ -155,13 +272,33 @@ export default {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
-      .video {
-        height:30vw;
-        margin: 1.389vw 0 0 0;
+      .videobox {
+        height: 40vw;
         width: 45%;
-        background-color:black;
+        // border: solid red 1px;
+        padding: 1.5vw 2vw;
         // background-image: url(@/assets/logo.png);
         // background-size: 150px 120px;
+        .video {
+          position: relative;
+          height: 80%;
+          width: 100%;
+          background-color: black;
+          .comment {
+            display: flex;
+            position: absolute;
+            justify-content: space-between;
+            height: 20%;
+            width: 100%;
+            margin-top: 25.6vw;
+            color: grey;
+          }
+        }
+        .videoinfo {
+          height: 20%;
+          width: 100%;
+          font-size: 3.59vw;
+        }
       }
     }
   }
